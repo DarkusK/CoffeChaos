@@ -1,0 +1,66 @@
+.footer {
+  background: #f7f7f7;
+  padding: 40px 0 30px 0;
+  display: flex;
+  height: 150px;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column
+}
+
+.footerNav {
+  width: 100%;
+  display: flex;
+    justify-content: center;
+}
+
+.footerNavList {
+  display: flex;
+  align-items: flex-end;
+  gap: 40px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footerNavItem {
+  display: flex;
+  align-items: flex-end;
+}
+
+.footerLogoLink {
+  display: flex;
+  align-items: flex-end;
+  text-decoration: none;
+  color: #000;
+}
+.footerLogoLink:hover {
+  color: #b08968;
+}
+
+.footerLogo {
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+
+.footerNavLink {
+  text-decoration: none;
+  color: #000;
+  font-size: 15px;
+  transition: color 0.2s;
+}
+
+.footerNavLink:hover {
+  color: #b08968;
+}
+.footerBeansLogo{
+    width: 200px;
+    height: 30px;
+    display: inline-block;
+    vertical-align: baseline;
+    margin-top: 20px;
+}

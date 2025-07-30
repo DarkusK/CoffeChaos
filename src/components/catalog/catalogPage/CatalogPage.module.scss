@@ -1,0 +1,13 @@
+.catalog {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0;
+  background-color: #fff;
+}
+.catalog__inner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}

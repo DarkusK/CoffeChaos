@@ -1,0 +1,22 @@
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.button {
+  padding: 6px 18px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.button[aria-pressed="true"], .button.selected {
+  background: #b08968;
+  color: #fff;
+  border-color: #b08968;
+}
