@@ -1,18 +1,17 @@
 import React from 'react';
 import Footer from '../components/footer/Footer';
 import DefaultHeader from '../components/defaultHeader/DefaultHeader';
-import AboutUs from '../components/aboutUs/AboutUs';
-import CatalogPage from '../components/catalog/catalogPage/CatalogPage';
+import ProductItem from '../components/productItem/ProductItem';
 
-const Menu = () => {
+
+const Product = () => {
     return (
         <>
         <DefaultHeader />
-        <AboutUs />
-        <CatalogPage />
+        <ProductItem/>
         <Footer />
         </>
     );
 };
 
-export default Menu;
+export default Product;

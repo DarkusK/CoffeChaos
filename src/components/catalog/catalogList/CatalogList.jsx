@@ -10,6 +10,7 @@ const CatalogList = ({data} ) => {
       return(
         <CatalogItem
         key={id}
+        id={id}
         {...itemProps}
         />
       )
