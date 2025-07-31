@@ -3,6 +3,9 @@ import styles from './CatalogItem.module.scss';
 
 const CatalogItem = (props) => {
   const {name,country,price,img} = props;
+
+
+  
   return(
     <div className={styles.item}>
       <img src={img} alt={name} className={styles.img} />

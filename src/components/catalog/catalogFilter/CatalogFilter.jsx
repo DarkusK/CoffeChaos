@@ -1,21 +1,28 @@
 import React from 'react';
 import styles from './CatalogFilter.module.scss';
 
-const countries = ['Brazil', 'Kenya', 'Columbia'];
-
-const CatalogFilter = ( ) => (
-  <div className={styles.filter}>
-    <span>Or filter</span>
-    {countries.map(country => (
+const CatalogFilter = (props) => {
+  const countries = ['All','Brazil', 'Kenya', 'Columbia'];
+ 
+  const buttons = countries.map((country) => {
+    return(
       <button
         key={country}
         className={styles.button}
+        type='button'
+        onClick={() => props.onFilterChange(country)}
       >
-       {country}
+        {country}
       </button>
-    ))}
-    <button className={styles.button}>All</button>
-  </div>
-);
+    )
+  })
+        
+  return(
+    <div className={styles.filter}>
+      <span>Or filter</span>
+      {buttons}
+    </div>
+  )
+};
 
 export default CatalogFilter;

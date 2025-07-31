@@ -15,11 +15,6 @@ const CatalogList = ({data} ) => {
       )
     })
   
-  
-  
-  
-  
-  
   return(
     <div className={styles.list}>
     {elements}
