@@ -4,6 +4,7 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   padding: 20px 24px;
   width: 220px;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,79 +20,4 @@
   height: 130px;
   object-fit: contain;
   margin-bottom: 16px;
-}
-
-.name {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 8px;
-  text-align: center;
-}
-
-.country {
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 8px;
-}
-
-.price {
-  font-size: 15px;
-  font-weight: 700;
-  color: #b08968;
-}
-
-.product {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 40px;
-  margin: 40px 0;
-}
-
-.product__image img {
-  max-width: 400px;
-  width: 100%;
-  border-radius: 6px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-  display: block;
-}
-
-.product__info {
-  max-width: 500px;
-  min-width: 320px;
-  height: 320px; /* фиксированная высота */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 20px 0;
-}
-
-.product__title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.product__divider {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.product__divider img {
-  width: 32px;
-  height: auto;
-}
-
-.product__country,
-.product__description,
-.product__price {
-  font-size: 1.1rem;
-  margin-bottom: 16px;
-}
-
-.product__price span {
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-left: 8px;
 }

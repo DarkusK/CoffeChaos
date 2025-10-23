@@ -1,67 +1,97 @@
-import { Component } from 'react';
-import CatalogSearch from '../catalogSearch/CatalogSearch';
-import CatalogFilter from '../catalogFilter/CatalogFilter';
-import CatalogList from '../catalogList/CatalogList';
+import React from 'react';
+import { useState, useMemo } from 'react';
+import CatalogItem from '../catalogItem/CatalogItem';
 import styles from './CatalogPage.module.scss';
+import productData from '../../../data/product.js';
 
-class CatalogPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [
-        { id: 1, name: 'AROMISTICO Coffee 1 kg', country: 'Brazil', price: '6.99$', img: '/images/product.jpeg' },
-        { id: 2, name: 'Barbos Coffee 1 kg', country: 'Kenya', price: '6.99$', img: '/images/product.jpeg' },
-        { id: 3, name: 'AROMISTICO Coffee 1 kg', country: 'Columbia', price: '6.99$', img: '/images/product.jpeg' },
-        { id: 4, name: 'Barbos Coffee 1 kg', country: 'Columbia', price: '6.99$', img: '/images/product.jpeg' },
-        { id: 5, name: 'AROMISTICO Coffee 1 kg', country: 'Columbia', price: '6.99$', img: '/images/product.jpeg' },
-        { id: 6, name: 'Norm Coffee 1 kg', country: 'Columbia', price: '6.99$', img: '/images/product.jpeg' }
-      ],
-      filter: 'All',
-      term:''
+const CatalogPage = () => {
+  const [filter, setFilter] = useState('All');
+  const [term, setTerm] = useState('');
+
+
+  const filteredData = useMemo(() => {
+    // 1. Сначала поиск по названию
+    let result = productData;
+    
+    if (term) {
+      result = result.filter(item => 
+        item.name.toLowerCase().includes(term.toLowerCase())
+      );
     }
-  }
-
-  filterPost = (items, filter) => {
-    switch(filter){
-      case 'Kenya':
-        return items.filter(item => item.country === 'Kenya');
-      case 'Brazil':
-        return items.filter(item => item.country === 'Brazil');
-      case 'Columbia':
-        return items.filter(item => item.country === 'Columbia');
-      default:
-        return items;
+    
+    // 2. Потом фильтр по стране
+    if (filter !== 'All') {
+      result = result.filter(item => item.country === filter);
     }
-  }
+    
+    return result;
+  }, [filter, term]);
+ 
 
-  onFilterChange = (filter) => {
-    this.setState({filter});
-  }
-
-  searchEmp = (items, term) => {
-    if (term.length === 0) {
-      return items;
-    }
-    return items.filter(item => item.name.toLowerCase().indexOf(term.toLowerCase()) > -1);
-  }
-  
-  onUpdateSearch = (term)=>{
-    this.setState({term});
-  }
-  render() {
-    const { data, filter,term } = this.state;
-    const filteredData = this.filterPost(this.searchEmp(data, term),filter);
-
+  const renderProductList = () => {
+    return filteredData.map(item => {
+      const {id, ...itemProps} = item;
+      return (
+        <CatalogItem
+          key={id}
+          id={id}
+          {...itemProps}
+        />
+      );
+    });
+  };
+  const renderFilter = () => {
+    const countries = ['All', 'Brazil', 'Kenya', 'Columbia'];
+    
     return (
-      <section className={styles.catalog}>
-        <div className={styles.catalog__inner}>
-          <CatalogSearch onUpdateSearch={this.onUpdateSearch}/>
-          <CatalogFilter filter={filter} onFilterChange={this.onFilterChange}/>
-        </div>
-        <CatalogList data={filteredData} />
-      </section>
+      <div className={styles.filter}>
+        <span>Or filter</span>
+        {countries.map((country) => (
+          <button
+            key={country}
+            className={`${styles.button} ${filter === country ? styles.active : ''}`}
+            type='button'
+            onClick={() => setFilter(country)}
+          >
+            {country}
+          </button>
+        ))}
+      </div>
     );
-  }
-}
+  };
+  const renderSearch = () => (
+    <div className={styles.catalog__search}>
+      <label  htmlFor="search-input">Looking for</label>
+      <input
+        id="search-input" 
+        type="text"
+        className={styles.catalog__input}
+        placeholder="start typing here..."
+        value={term}
+        onChange={(e) => setTerm(e.target.value)}
+      />
+    </div>
+  );
+
+  return ( 
+    <section className={styles.catalog}>
+      <div className={styles.catalog__inner}>
+        {renderSearch()}
+        {renderFilter()}
+      </div>
+      
+      {filteredData.length === 0 ? (
+       <div className={styles.empty__text}>
+          Products not found
+        </div>
+      ) : (
+        <div className={styles.list}>
+          {renderProductList()}
+        </div>
+      )}
+    
+    </section>
+  );
+};
 
 export default CatalogPage;
